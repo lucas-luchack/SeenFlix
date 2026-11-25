@@ -69,11 +69,11 @@ Legend: **Lvl** = priority level from the spec (1 = must, 2 = quality, 3 = bonus
 
 | ID  | Task                                                            | Depends on | Lvl | Who | Status |
 |-----|-----------------------------------------------------------------|------------|-----|-----|--------|
-| 5.1 | TMDB client (fetch, API key, error mapping → 500/502)           | 0.4, 1.2   | 1   | Asad | ☐      |
-| 5.2 | `GET /movies/search?q=` (multi search movie+tv, validate `q`)   | 5.1, 1.6   | 1   | Asad | ☐      |
-| 5.3 | `GET /movies/:type/:id` – detail page                           | 5.1        | 1   | Asad | ☐      |
-| 5.4 | LRU cache with TTL ≈ 10 min (key = normalized `q`)              | 5.2        | 2   | Asad | ☐      |
-| 5.5 | Log HIT / MISS                                                  | 5.4, 1.4   | 2   | Asad | ☐      |
+| 5.1 | TMDB client (fetch, API key, error mapping → 500/502)           | 0.4, 1.2   | 1   | Asad | ☑      |
+| 5.2 | `GET /movies/search?q=` (multi search movie+tv, validate `q`)   | 5.1, 1.6   | 1   | Asad | ☑      |
+| 5.3 | `GET /movies/:type/:id` – detail page                           | 5.1        | 1   | Asad | ☑      |
+| 5.4 | LRU cache with TTL ≈ 10 min (key = normalized `q`)              | 5.2        | 2   | Asad | ☑      |
+| 5.5 | Log HIT / MISS                                                  | 5.4, 1.4   | 2   | Asad | ☑      |
 | 5.6 | Save sample HIT/MISS logs as proof                              | 5.5        | 2   | Asad | ☐      |
 
 ## 6. Backend – Docs
