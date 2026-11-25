@@ -12,7 +12,7 @@ Legend: **Lvl** = priority level from the spec (1 = must, 2 = quality, 3 = bonus
 |-----|-----------------------------------------------------------------|------------|-----|-----|--------|
 | 0.2 | Git convention: Conventional Commits in English → `CONTRIBUTING.md` | –      | 1   | Lucas | ☑      |
 | 0.3 | Stack: Prisma + SQLite, Zod, bun test, pino → `CONTRIBUTING.md` | –          | 1   | All | ☑      |
-| 0.4 | Get TMDB API key                                                | –          | 1   | Asad | ☐      |
+| 0.4 | Get TMDB API key                                                | –          | 1   | Asad | ☑      |
 | 0.5 | Architecture schema (front / back / DB / TMDB)                  | 0.3        | 1   | Thibault | ☐      |
 | 0.6 | API contract draft → `docs/API.md` (to refine)                  | 0.3        | 1   | All | ◐      |
 
@@ -99,7 +99,7 @@ Legend: **Lvl** = priority level from the spec (1 = must, 2 = quality, 3 = bonus
 
 | ID  | Task                                                            | Depends on | Lvl | Who | Status |
 |-----|-----------------------------------------------------------------|------------|-----|-----|--------|
-| 8.1 | Clean scaffold (remove counter store), layout + navbar          | –          | 1   | Thibault | ☐      |
+| 8.1 | Clean scaffold (remove counter store), layout + navbar          | –          | 1   | Thibault | ☑      |
 | 8.2 | HTTP client (axios/fetch), base URL from env                    | 0.6        | 1   | Thibault | ☐      |
 | 8.3 | Auth store (Pinia): tokens, user, login/register/logout, persisted in localStorage | 8.2 | 1 | Thibault | ☐ |
 | 8.4 | Interceptor: attach Bearer token, auto-refresh on 401           | 8.3, 3.7   | 3   | Thibault | ☐      |
