@@ -1,3 +1,5 @@
+import { BadGatewayError, InternalServerError } from "../errors/index.ts";
+
 const TMDB_BASE_URL = "https://api.themoviedb.org/3";
 const CACHE_TTL_MS = 10 * 60 * 1000;
 const CACHE_MAX_ENTRIES = 100;
@@ -5,18 +7,6 @@ const CACHE_MAX_ENTRIES = 100;
 interface CacheEntry {
   value: unknown;
   expiresAt: number;
-}
-
-class AppError extends Error {
-  status: number;
-  code: string;
-
-  constructor(status: number, code: string, message: string) {
-    super(message);
-    this.status = status;
-    this.code = code;
-    this.name = "AppError";
-  }
 }
 
 const cache = new Map<string, CacheEntry>();
@@ -59,7 +49,7 @@ async function tmdbRequest(
 ): Promise<unknown> {
   const apiKey = process.env.TMDB_API_KEY;
   if (!apiKey) {
-    throw new AppError(500, "TMDB_CONFIG_ERROR", "TMDB_API_KEY is not configured");
+    throw new InternalServerError("TMDB_API_KEY is not configured", "TMDB_CONFIG_ERROR");
   }
 
   const url = new URL(`${TMDB_BASE_URL}${path}`);
@@ -74,21 +64,21 @@ async function tmdbRequest(
   try {
     response = await fetch(url);
   } catch {
-    throw new AppError(502, "TMDB_UPSTREAM_ERROR", "Unable to reach TMDB");
+    throw new BadGatewayError("Unable to reach TMDB", "TMDB_UPSTREAM_ERROR");
   }
 
   if (!response.ok) {
     if (response.status === 401) {
-      throw new AppError(500, "TMDB_AUTH_ERROR", "TMDB rejected the configured API key");
+      throw new InternalServerError("TMDB rejected the configured API key", "TMDB_AUTH_ERROR");
     }
 
-    throw new AppError(502, "TMDB_UPSTREAM_ERROR", `TMDB returned status ${response.status}`);
+    throw new BadGatewayError(`TMDB returned status ${response.status}`, "TMDB_UPSTREAM_ERROR");
   }
 
   try {
     return await response.json();
   } catch {
-    throw new AppError(502, "TMDB_INVALID_RESPONSE", "TMDB returned an invalid response");
+    throw new BadGatewayError("TMDB returned an invalid response", "TMDB_INVALID_RESPONSE");
   }
 }
 
