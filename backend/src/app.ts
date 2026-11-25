@@ -1,5 +1,6 @@
 import cors from "cors";
 import express, { type Express } from "express";
+
 import { router } from "./routes/index.ts";
 
 export interface AppOptions {

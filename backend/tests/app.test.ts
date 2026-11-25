@@ -1,6 +1,7 @@
 import { afterAll, beforeAll, describe, expect, test } from "bun:test";
 import type { Server } from "node:http";
 import type { AddressInfo } from "node:net";
+
 import { createApp } from "../src/app.ts";
 
 const allowedOrigin = "http://localhost:5173";
