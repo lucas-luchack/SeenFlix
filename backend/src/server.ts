@@ -1,5 +1,7 @@
 import { createApp } from "./app.ts";
-import { config } from "./config/index.ts";
+import { loadConfig } from "./config/index.ts";
+
+const config = loadConfig();
 
 const app = createApp({ corsOrigins: config.CORS_ORIGIN });
 

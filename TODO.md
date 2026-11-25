@@ -23,9 +23,9 @@ Legend: **Lvl** = priority level from the spec (1 = must, 2 = quality, 3 = bonus
 | 1.1 | `src/` structure (routes, services, middlewares, models, config) | 0.3       | 1   | Lucas | ☑      |
 | 1.2 | Config loader + `.env` / `.env.example` (JWT secrets, DB URL, TMDB key, port) | 1.1 | 1 | Lucas | ☑ |
 | 1.3 | Express app + server bootstrap (app separated from listen, for tests) | 1.1  | 1   | Lucas | ☑      |
-| 1.4 | `morgan` HTTP logs + app logger (pino/winston)                  | 1.3        | 2   | Asad | ☐      |
-| 1.5 | Central error middleware + `AppError` → `{ error: { message, code } }` (400/401/404/409/500) | 1.3 | 2 | Asad | ☐ |
-| 1.6 | Zod validation middleware (body / params / query)               | 1.5        | 2   | Asad | ☐      |
+| 1.4 | `morgan` HTTP logs + app logger (pino/winston)                  | 1.3        | 2   | Asad | ☑      |
+| 1.5 | Central error middleware + `AppError` → `{ error: { message, code } }` (400/401/404/409/500) | 1.3 | 2 | Asad | ☑ |
+| 1.6 | Zod validation middleware (body / params / query)               | 1.5        | 2   | Asad | ☑      |
 | 1.7 | CORS for frontend                                               | 1.3        | 1   | Lucas | ☑      |
 
 ## 2. Backend – Database
