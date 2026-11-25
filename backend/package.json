@@ -22,7 +22,7 @@
     "db:seed": "bun run src/prisma/seed.ts"
   },
   "dependencies": {
-    "@prisma/adapter-better-sqlite3": "^7.10.1",
+    "@prisma/adapter-libsql": "^7.10.1",
     "@prisma/client": "7",
     "@wesleytodd/openapi": "^1.1.0",
     "cors": "^2.8.6",
