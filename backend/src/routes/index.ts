@@ -1,8 +1,8 @@
 import { Router } from "express";
 
+import { authRouter } from "./auth.ts";
 import { healthRouter } from "./health.ts";
 import { moviesRouter } from "./movies.ts";
-import { authRouter } from "./auth.ts";
 
 export const router: Router = Router();
 

@@ -1,24 +1,26 @@
 import { Router } from "express";
-import { ConflictError, UnprocessableEntityError } from "../errors";
-import { createUser, findUserByEmail } from "../models";
+
+import { loginSchema, refreshTokenSchema, signupSchema } from "../schemas/auth.schema.ts";
+import { login, logout, refreshToken, register } from "../services/auth.service.ts";
 
 export const authRouter: Router = Router();
 
-authRouter.post("/signup",  async (req, res, next) => {
-    try {
-        const { email, password, confirmPassword } = req.body;
+authRouter.post("/register", async (req, res) => {
+  const user = await register(signupSchema.parse(req.body));
+  res.status(201).json(user);
+});
 
-        if (password !== confirmPassword) 
-            throw new UnprocessableEntityError("Passwords do not match", "PASSWORD_MISMATCH")
+authRouter.post("/login", async (req, res) => {
+  const result = await login(loginSchema.parse(req.body));
+  res.status(200).json(result);
+});
 
-        if (await findUserByEmail(email))
-            throw new ConflictError("Email already exist in database", "ACCOUNT_ALREADY_EXIST");
+authRouter.post("/refresh", async (req, res) => {
+  const result = await refreshToken(refreshTokenSchema.parse(req.body));
+  res.status(200).json(result);
+});
 
-        const hashedPassword = await Bun.password.hash(password);
-        const res = await createUser({ email, password: hashedPassword });
-
-        
-    } catch {
-
-    }
-})
+authRouter.post("/logout", async (req, res) => {
+  await logout(refreshTokenSchema.parse(req.body));
+  res.status(204).end();
+});

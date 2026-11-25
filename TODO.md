@@ -44,13 +44,13 @@ Legend: **Lvl** = priority level from the spec (1 = must, 2 = quality, 3 = bonus
 
 | ID  | Task                                                            | Depends on | Lvl | Who | Status |
 |-----|-----------------------------------------------------------------|------------|-----|-----|--------|
-| 3.1 | Auth service: register (bcrypt hash, duplicate → 409)           | 2.2        | 1   | Lucas | ☐      |
-| 3.2 | Auth service: login (check password → access token)             | 3.1        | 1   | Lucas | ☐      |
-| 3.3 | `POST /auth/register` + validation (201/400/409)                | 3.1, 1.6   | 1   | Lucas | ☐      |
-| 3.4 | `POST /auth/login` + validation (200/400/401)                   | 3.2, 1.6   | 1   | Lucas | ☐      |
+| 3.1 | Auth service: register (bcrypt hash, duplicate → 409)           | 2.2        | 1   | Lucas | ☑      |
+| 3.2 | Auth service: login (check password → access token)             | 3.1        | 1   | Lucas | ☑      |
+| 3.3 | `POST /auth/register` + validation (201/400/409)                | 3.1, 1.6   | 1   | Lucas | ☑      |
+| 3.4 | `POST /auth/login` + validation (200/400/401)                   | 3.2, 1.6   | 1   | Lucas | ☑      |
 | 3.5 | Auth middleware (Bearer access token → `req.user`, 401)         | 3.2, 1.5   | 1   | Lucas | ☐      |
-| 3.6 | Refresh token generation (long TTL) returned at login           | 3.2, 2.4   | 3   | Lucas | ☐      |
-| 3.7 | `POST /auth/refresh` `{ refreshToken }` in body, rotation (200/401) | 3.6        | 3   | Lucas | ☐      |
+| 3.6 | Refresh token generation (long TTL) returned at login           | 3.2, 2.4   | 3   | Lucas | ☑      |
+| 3.7 | `POST /auth/refresh` `{ refreshToken }` in body, rotation (200/401) | 3.6        | 3   | Lucas | ☑      |
 | 3.8 | (Optional) `POST /auth/logout` – revoke refresh token           | 3.7        | 3   | Lucas | ☐      |
 | 3.9 | (Optional) `GET /me` – current user info                        | 3.5        | 3   | Lucas | ☐      |
 

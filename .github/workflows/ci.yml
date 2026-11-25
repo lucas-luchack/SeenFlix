@@ -2,9 +2,10 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
   pull_request:
   workflow_dispatch:
+
 
 concurrency:
   group: ci-${{ github.ref }}
@@ -24,41 +25,40 @@ jobs:
       NODE_ENV: test
       DATABASE_URL: file:./ci.db
       JWT_ACCESS_SECRET: ci-access-secret-at-least-32-characters-long
-      JWT_REFRESH_SECRET: ci-refresh-secret-at-least-32-characters-long
       TMDB_API_KEY: ci-dummy-key
       CORS_ORIGIN: http://localhost:5173
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
 
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
+    - name: Install dependencies
+      run: bun install --frozen-lockfile
 
-      - name: Generate Prisma client
-        run: bunx prisma generate --config prisma7.config.ts
+    - name: Generate Prisma client
+      run: bunx prisma generate --config prisma7.config.ts
 
-      - name: Format check
-        run: bun run format:check
+    - name: Format check
+      run: bun run format:check
 
-      - name: Lint
-        run: bunx oxlint . --deny-warnings
+    - name: Lint
+      run: bunx oxlint . --deny-warnings
 
-      - name: Typecheck
-        run: bun run typecheck
+    - name: Typecheck
+      run: bun run typecheck
 
-      - name: Tests with coverage
-        run: bun test --coverage --coverage-reporter=text --coverage-reporter=lcov
+    - name: Tests with coverage
+      run: bun test --coverage --coverage-reporter=text --coverage-reporter=lcov
 
-      - name: Upload coverage
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: backend-coverage
-          path: backend/coverage
-          if-no-files-found: ignore
+    - name: Upload coverage
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: backend-coverage
+        path: backend/coverage
+        if-no-files-found: ignore
 
   frontend:
     name: Frontend (lint, typecheck, tests, build)
@@ -67,37 +67,37 @@ jobs:
       run:
         working-directory: frontend
     steps:
-      - uses: actions/checkout@v4
+    - uses: actions/checkout@v4
 
-      - uses: oven-sh/setup-bun@v2
-        with:
-          bun-version: latest
+    - uses: oven-sh/setup-bun@v2
+      with:
+        bun-version: latest
 
-      - name: Install dependencies
-        run: bun install --frozen-lockfile
+    - name: Install dependencies
+      run: bun install --frozen-lockfile
 
-      - name: Lint (oxlint)
-        run: bunx oxlint .
+    - name: Lint (oxlint)
+      run: bunx oxlint .
 
-      - name: Lint (eslint)
-        run: bunx eslint .
+    - name: Lint (eslint)
+      run: bunx eslint .
 
-      - name: Format check
-        run: bunx oxfmt --check src/
+    - name: Format check
+      run: bunx oxfmt --check src/
 
-      - name: Typecheck
-        run: bun run type-check
+    - name: Typecheck
+      run: bun run type-check
 
-      - name: Unit tests with coverage
-        run: bunx vitest run --coverage.enabled --coverage.reportOnFailure --coverage.reporter=text --coverage.reporter=lcov
+    - name: Unit tests with coverage
+      run: bunx vitest run --coverage.enabled --coverage.reportOnFailure --coverage.reporter=text --coverage.reporter=lcov
 
-      - name: Build
-        run: bun run build-only
+    - name: Build
+      run: bun run build-only
 
-      - name: Upload coverage
-        if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: frontend-coverage
-          path: frontend/coverage
-          if-no-files-found: ignore
+    - name: Upload coverage
+      if: always()
+      uses: actions/upload-artifact@v4
+      with:
+        name: frontend-coverage
+        path: frontend/coverage
+        if-no-files-found: ignore

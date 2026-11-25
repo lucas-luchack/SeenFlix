@@ -1,9 +1,9 @@
 import { Router, type Request, type Response } from "express";
+
 import { ValidationError } from "../errors/index.ts";
-import { getMovieDetails, searchMovies } from "../services/movieService.ts";
+import { getMovieDetails, searchMovies } from "../services/movie.service.ts";
 
 export const moviesRouter = Router();
-
 
 moviesRouter.get("/search", async (req, res, next) => {
   try {
@@ -16,7 +16,7 @@ moviesRouter.get("/search", async (req, res, next) => {
     const result = await searchMovies(rawQuery);
     res.json(result);
   } catch (error) {
-    next(error); 
+    next(error);
   }
 });
 

@@ -36,17 +36,14 @@ function setCache(key: string, value: unknown): void {
 
   while (cache.size > CACHE_MAX_ENTRIES) {
     const oldestKey = cache.keys().next().value;
-    
+
     if (oldestKey) {
       cache.delete(oldestKey);
     }
   }
 }
 
-async function tmdbRequest(
-  path: string,
-  params: Record<string, string> = {},
-): Promise<unknown> {
+async function tmdbRequest(path: string, params: Record<string, string> = {}): Promise<unknown> {
   const apiKey = process.env.TMDB_API_KEY;
   if (!apiKey) {
     throw new InternalServerError("TMDB_API_KEY is not configured", "TMDB_CONFIG_ERROR");
@@ -101,10 +98,7 @@ export async function searchMovies(query: string): Promise<unknown> {
   return result;
 }
 
-export async function getMovieDetails(
-  type: "movie" | "tv",
-  id: number,
-): Promise<unknown> {
+export async function getMovieDetails(type: "movie" | "tv", id: number): Promise<unknown> {
   const key = `detail:${type}:${id}`;
   const cached = getCache(key);
 

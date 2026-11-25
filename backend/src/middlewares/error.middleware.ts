@@ -12,9 +12,11 @@ function toAppError(err: unknown): AppError {
 
   if (err instanceof ZodError) {
     const message = err.issues
-      .map((issue) => (issue.path.length ? `${issue.path.join(".")}: ${issue.message}` : issue.message))
+      .map((issue) =>
+        issue.path.length ? `${issue.path.join(".")}: ${issue.message}` : issue.message,
+      )
       .join("; ");
-    return new AppError(400, "VALIDATION_ERROR", message || "Validation failed");
+    return new AppError(422, "VALIDATION_ERROR", message || "Validation failed");
   }
 
   // Malformed JSON body rejected by express.json()
