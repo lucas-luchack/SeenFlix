@@ -1,14 +1,21 @@
-import express, { type Express, type Request, type Response } from 'express';
-import { moviesRouter } from './routes/movies.ts';
+import cors from "cors";
+import express, { type Express } from "express";
 
-const app: Express = express();
+import { router } from "./routes/index.ts";
 
-app.use(express.json());
+export interface AppOptions {
+  corsOrigins: string[];
+}
 
-app.get('/', (req: Request, res: Response) => {
-  res.send('Hello World!');
-});
+// App is built without listening so tests can mount it on a random port.
+export function createApp({ corsOrigins }: AppOptions): Express {
+  const app = express();
 
-app.use('/movies', moviesRouter);
+  app.disable("x-powered-by");
+  app.use(cors({ origin: corsOrigins }));
+  app.use(express.json());
 
-app.listen(3000);
+  app.use(router);
+
+  return app;
+}

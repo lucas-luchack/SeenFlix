@@ -12,7 +12,7 @@ Legend: **Lvl** = priority level from the spec (1 = must, 2 = quality, 3 = bonus
 |-----|-----------------------------------------------------------------|------------|-----|-----|--------|
 | 0.2 | Git convention: Conventional Commits in English → `CONTRIBUTING.md` | –      | 1   | Lucas | ☑      |
 | 0.3 | Stack: Prisma + SQLite, Zod, bun test, pino → `CONTRIBUTING.md` | –          | 1   | All | ☑      |
-| 0.4 | Get TMDB API key                                                | –          | 1   | Asad | ☐      |
+| 0.4 | Get TMDB API key                                                | –          | 1   | Asad | ☑      |
 | 0.5 | Architecture schema (front / back / DB / TMDB)                  | 0.3        | 1   | Thibault | ☐      |
 | 0.6 | API contract draft → `docs/API.md` (to refine)                  | 0.3        | 1   | All | ◐      |
 
@@ -20,13 +20,13 @@ Legend: **Lvl** = priority level from the spec (1 = must, 2 = quality, 3 = bonus
 
 | ID  | Task                                                            | Depends on | Lvl | Who | Status |
 |-----|-----------------------------------------------------------------|------------|-----|-----|--------|
-| 1.1 | `src/` structure (routes, services, middlewares, models, config) | 0.3       | 1   | Lucas | ☐      |
-| 1.2 | Config loader + `.env` / `.env.example` (JWT secrets, DB URL, TMDB key, port) | 1.1 | 1 | Lucas | ☐ |
-| 1.3 | Express app + server bootstrap (app separated from listen, for tests) | 1.1  | 1   | Lucas | ☐      |
+| 1.1 | `src/` structure (routes, services, middlewares, models, config) | 0.3       | 1   | Lucas | ☑      |
+| 1.2 | Config loader + `.env` / `.env.example` (JWT secrets, DB URL, TMDB key, port) | 1.1 | 1 | Lucas | ☑ |
+| 1.3 | Express app + server bootstrap (app separated from listen, for tests) | 1.1  | 1   | Lucas | ☑      |
 | 1.4 | `morgan` HTTP logs + app logger (pino/winston)                  | 1.3        | 2   | Asad | ☐      |
 | 1.5 | Central error middleware + `AppError` → `{ error: { message, code } }` (400/401/404/409/500) | 1.3 | 2 | Asad | ☐ |
 | 1.6 | Zod validation middleware (body / params / query)               | 1.5        | 2   | Asad | ☐      |
-| 1.7 | CORS for frontend                                               | 1.3        | 1   | Lucas | ☐      |
+| 1.7 | CORS for frontend                                               | 1.3        | 1   | Lucas | ☑      |
 
 ## 2. Backend – Database
 
@@ -99,7 +99,7 @@ Legend: **Lvl** = priority level from the spec (1 = must, 2 = quality, 3 = bonus
 
 | ID  | Task                                                            | Depends on | Lvl | Who | Status |
 |-----|-----------------------------------------------------------------|------------|-----|-----|--------|
-| 8.1 | Clean scaffold (remove counter store), layout + navbar          | –          | 1   | Thibault | ☐      |
+| 8.1 | Clean scaffold (remove counter store), layout + navbar          | –          | 1   | Thibault | ☑      |
 | 8.2 | HTTP client (axios/fetch), base URL from env                    | 0.6        | 1   | Thibault | ☐      |
 | 8.3 | Auth store (Pinia): tokens, user, login/register/logout, persisted in localStorage | 8.2 | 1 | Thibault | ☐ |
 | 8.4 | Interceptor: attach Bearer token, auto-refresh on 401           | 8.3, 3.7   | 3   | Thibault | ☐      |
