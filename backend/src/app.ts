@@ -7,7 +7,6 @@ export interface AppOptions {
   corsOrigins: string[];
 }
 
-// App is built without listening so tests can mount it on a random port.
 export function createApp({ corsOrigins }: AppOptions): Express {
   const app = express();
 

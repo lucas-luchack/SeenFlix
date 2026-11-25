@@ -32,12 +32,12 @@ Legend: **Lvl** = priority level from the spec (1 = must, 2 = quality, 3 = bonus
 
 | ID  | Task                                                            | Depends on | Lvl | Who | Status |
 |-----|-----------------------------------------------------------------|------------|-----|-----|--------|
-| 2.1 | DB connection / client                                          | 1.2        | 1   | Lucas | ☐      |
-| 2.2 | `User` model (id, email unique, passwordHash, createdAt)        | 2.1        | 1   | Lucas | ☐      |
-| 2.3 | `Favorite` model (id, userId FK, tmdbId, type, rating?, comment?, createdAt, unique userId+tmdbId+type) | 2.2 | 1 | Lucas | ☐ |
-| 2.4 | `RefreshToken` table (hash, userId, expiresAt, revoked)            | 2.2        | 3   | Lucas | ☐      |
-| 2.5 | Seed script (demo `alice@example.org / Passw0rd!` + favorites)  | 2.3        | 1   | Lucas | ☐      |
-| 2.6 | `db:reset` script                                               | 2.3        | 1   | Lucas | ☐      |
+| 2.1 | DB connection / client                                          | 1.2        | 1   | Lucas | ☑      |
+| 2.2 | `User` model (id, email unique, passwordHash, createdAt)        | 2.1        | 1   | Lucas | ☑      |
+| 2.3 | `Favorite` model (id, userId FK, tmdbId, type, rating?, comment?, createdAt, unique userId+tmdbId+type) | 2.2 | 1 | Lucas | ☑ |
+| 2.4 | `RefreshToken` table (hash, userId, expiresAt, revoked)            | 2.2        | 3   | Lucas | ☑      |
+| 2.5 | Seed script (demo `alice@example.org / Passw0rd!` + favorites)  | 2.3        | 1   | Lucas | ☑      |
+| 2.6 | `db:reset` script                                               | 2.3        | 1   | Lucas | ☑      |
 | 2.7 | Dedicated SQLite test DB file                                   | 2.3        | 2   | Asad | ☐      |
 
 ## 3. Backend – Authentication
