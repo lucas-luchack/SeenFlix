@@ -6,9 +6,8 @@ const envSchema = z.object({
   PORT: z.coerce.number().int().positive().default(3000),
   DATABASE_URL: z.string().min(1),
   JWT_ACCESS_SECRET: z.string().min(32),
-  JWT_REFRESH_SECRET: z.string().min(32),
   JWT_ACCESS_TTL: z.string().default("15m"),
-  JWT_REFRESH_TTL: z.string().default("7d"),
+  REFRESH_TOKEN_TTL: z.string().default("7d"),
   TMDB_API_KEY: z.string().min(1),
   CORS_ORIGIN: z
     .string()

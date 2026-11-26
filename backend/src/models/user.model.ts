@@ -4,8 +4,17 @@ import { prisma } from "../prisma/client.ts";
 export type { User };
 
 export type PublicUser = Omit<User, "password">;
+export type UserPayload = Omit<PublicUser, "updatedAt" | "createdAt">;
 
 export function toPublicUser({ password: _password, ...user }: User): PublicUser {
+  return user;
+}
+
+export function toUserPayload({
+  updatedAt: _updatedAt,
+  createdAt: _createdAt,
+  ...user
+}: PublicUser): UserPayload {
   return user;
 }
 

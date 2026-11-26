@@ -3,16 +3,28 @@ import { prisma } from "../prisma/client.ts";
 
 export type { RefreshToken };
 
-export function createRefreshToken(userId: string, token: string): Promise<RefreshToken> {
-  return prisma.refreshToken.create({ data: { userId, token } });
+export function createRefreshToken(data: {
+  userId: string;
+  tokenHash: string;
+  expiresAt: Date;
+}): Promise<RefreshToken> {
+  return prisma.refreshToken.create({ data });
 }
 
-export function findRefreshToken(token: string): Promise<RefreshToken | null> {
-  return prisma.refreshToken.findFirst({ where: { token } });
+export function findRefreshTokenByHash(tokenHash: string): Promise<RefreshToken | null> {
+  return prisma.refreshToken.findUnique({ where: { tokenHash } });
 }
 
-export async function deleteRefreshToken(token: string): Promise<void> {
-  await prisma.refreshToken.deleteMany({ where: { token } });
+export async function revokeRefreshToken(id: string): Promise<boolean> {
+  const { count } = await prisma.refreshToken.updateMany({
+    where: { id, revokedAt: null },
+    data: { revokedAt: new Date() },
+  });
+  return count === 1;
+}
+
+export async function deleteRefreshTokenByHash(tokenHash: string): Promise<void> {
+  await prisma.refreshToken.deleteMany({ where: { tokenHash } });
 }
 
 export async function deleteUserRefreshTokens(userId: string): Promise<void> {
